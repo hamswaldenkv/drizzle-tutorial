@@ -23,7 +23,8 @@ export async function GET(request: NextRequest) {
     const user = await db
       .insert(User)
       .values(values)
-      .returning({ insertedId: User.id });
+      .returning({ insertedId: User.id })
+      .then((res) => res[0] ?? null);
     return NextResponse.json({ user });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
