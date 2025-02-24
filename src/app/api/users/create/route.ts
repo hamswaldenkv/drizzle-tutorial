@@ -20,7 +20,10 @@ export async function GET(request: NextRequest) {
       password: "password",
       age: Number(age),
     };
-    const user = await db.insert(User).values(values);
+    const user = await db
+      .insert(User)
+      .values(values)
+      .returning({ insertedId: User.id });
     return NextResponse.json({ user });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
