@@ -23,6 +23,10 @@ export async function GET(request: NextRequest) {
     const user = await db
       .insert(User)
       .values(values)
+      .onConflictDoUpdate({
+        target: User.email,
+        set: values,
+      })
       .returning({ insertedId: User.id })
       .then((res) => res[0] ?? null);
     return NextResponse.json({ user });
