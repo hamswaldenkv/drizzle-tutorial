@@ -8,7 +8,13 @@ export async function GET(request: NextRequest) {
   const page = searchParams.get("page") || "1";
   const perPage = searchParams.get("perPage") || "10";
 
-  return NextResponse.json({ message: "" });
+  const dbResult = await db
+    .select()
+    .from(Post)
+    .limit(Number(perPage))
+    .offset((Number(page) - 1) * Number(perPage));
+
+  return NextResponse.json({ posts: dbResult });
 }
 
 export async function POST(req: Request) {

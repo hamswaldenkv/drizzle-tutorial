@@ -50,6 +50,20 @@
       "when": 1740491667585,
       "tag": "0006_sturdy_legion",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1740495651962,
+      "tag": "0007_lowly_next_avengers",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1740495689266,
+      "tag": "0008_smiling_crystal",
+      "breakpoints": true
     }
   ]
 }

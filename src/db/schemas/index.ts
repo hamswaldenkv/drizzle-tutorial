@@ -19,8 +19,10 @@ export const User = pgTable("users", {
   name: varchar("name").notNull(),
   age: integer("age").notNull().default(18),
   active: boolean("active").notNull().default(true),
-  created_at: date("created_at").notNull().defaultNow(),
-  updated_at: date("updated_at"),
+  created_at: timestamp({ mode: "date", withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updated_at: timestamp({ mode: "date", withTimezone: true }),
   email_verified_at: timestamp({ mode: "date", withTimezone: true }),
 });
 
@@ -33,6 +35,8 @@ export const Post = pgTable("posts", {
   authorId: uuid("author_id")
     .notNull()
     .references(() => User.id, { onDelete: "cascade" }),
+  created_at: timestamp("created_at").notNull().defaultNow(),
+  updated_at: timestamp("updated_at"),
 });
 
 export const UserRelations = relations(User, ({ many }) => ({
